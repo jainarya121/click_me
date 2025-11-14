@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hey! Look!</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* Basic setup */
+        body {
+            /* New playful font */
+            font-family: 'Nunito', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            /* New bright gradient */
+            background: linear-gradient(135deg, #61e1ff, #bd71ff);
+            overflow: hidden;
+        }
+
+        /* The main content box */
+        .container {
+            background: white;
+            padding: 2.5rem;
+            /* A bit rounder */
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 500px;
+            text-align: center;
+            transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+        }
+
+        /* Confession screen setup */
+        .confession {
+            display: none; /* Hidden by default */
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .confession.visible {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+            animation: fadeIn 1s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Headings and paragraphs */
+        h1 {
+            /* New color matching the gradient */
+            color: #bd71ff;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #444; /* Slightly softer black */
+        }
+
+        /* The new button styling */
+        button {
+            background-color: #bd71ff;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 1rem;
+            /* Make sure button uses the new font */
+            font-family: 'Nunito', sans-serif;
+            font-weight: 700; /* Bolder */
+            border-radius: 30px; /* Even more round */
+            cursor: pointer;
+            /* Add transform to the transition list */
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            margin-top: 1.5rem;
+        }
+
+        /* Playful button hover effect */
+        button:hover {
+            background-color: #a150e0; /* Darker purple */
+            /* Bounces and wiggles! */
+            transform: scale(1.1) rotate(-5deg);
+        }
+
+        /* The emoji */
+        .emoji {
+            font-size: 3rem;
+            margin-top: 1rem;
+            /* Apply the new 'bounce' animation */
+            animation: bounce 1.5s infinite ease-in-out;
+        }
+
+        /* New 'bounce' animation */
+        @keyframes bounce {
+            0%, 100% {
+                transform: scale(1) rotate(0deg);
+            }
+            50% {
+                transform: scale(1.2) rotate(10deg);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container" id="initialScreen">
+        <h1>Hey Swadhaa! 😉</h1>
+        <p>I made this little thing for you...</p>
+        <p>I've got a secret I've been wanting to share, and I'm <em>pretty</em> sure you'll like it.</p>
+        <button id="revealButton">Click to see! 🤫</button>
+    </div>
+
+    <div class="container confession" id="confessionScreen">
+        <h1>Okay, here it is...</h1>
+        <p>I need to admit something... Every time my phone buzzes, I secretly hope it’s you! So here’s me, officially confessing — I’ve totally caught feelings for you. If you ever wanted to steal my heart, mission accomplished 💖😄</p>
+        <p>...So, what do you say?</p>
+        <div class="emoji">💖✨</div>
+    </div>
+
+    <script>
+        // Wait for the document to be fully loaded before running the script
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // Get the elements from the HTML
+            const revealButton = document.getElementById('revealButton');
+            const initialScreen = document.getElementById('initialScreen');
+            const confessionScreen = document.getElementById('confessionScreen');
+
+            // Add a 'click' event listener to the button
+            revealButton.addEventListener('click', () => {
+                
+                // 1. Fade out the initial screen
+                initialScreen.style.opacity = '0';
+                initialScreen.style.transform = 'translateY(-20px)';
+                
+                // 2. Wait for the fade-out to finish (500ms, matching the CSS transition)
+                setTimeout(() => {
+                    // 3. Hide the initial screen completely
+                    initialScreen.style.display = 'none';
+                    
+                    // 4. Show the confession screen by adding the 'visible' class
+                    confessionScreen.classList.add('visible');
+                }, 500);
+            });
+
+        });
+    </script>
+
+</body>
+</html>
